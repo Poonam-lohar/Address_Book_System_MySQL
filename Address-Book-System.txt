@@ -38,3 +38,32 @@ mysql> show databases;
 
 mysql> Use addressbooksystem;
 Database changed
+
+
+UC2: Create Address Book table with first name,lastname,address,city,state,zip,phone number,email as its attributes...
+
+mysql> create table AddressBook(
+    -> firstname varchar(10) not null,
+    -> lastname varchar(20) not null,
+    -> address varchar(100) not null,
+    -> city varchar(100) not null,
+    -> state varchar(50) not null,
+    -> zip int not null,
+    -> phonenumber double not null,
+    -> email varchar(100) not null);
+Query OK, 0 rows affected (0.12 sec)
+
+mysql> desc AddressBook;
++-------------+--------------+------+-----+---------+-------+
+| Field       | Type         | Null | Key | Default | Extra |
++-------------+--------------+------+-----+---------+-------+
+| firstname   | varchar(10)  | NO   |     | NULL    |       |
+| lastname    | varchar(20)  | NO   |     | NULL    |       |
+| address     | varchar(100) | NO   |     | NULL    |       |
+| city        | varchar(100) | NO   |     | NULL    |       |
+| state       | varchar(50)  | NO   |     | NULL    |       |
+| zip         | int          | NO   |     | NULL    |       |
+| phonenumber | double       | NO   |     | NULL    |       |
+| email       | varchar(100) | NO   |     | NULL    |       |
++-------------+--------------+------+-----+---------+-------+
+8 rows in set (0.01 sec)
