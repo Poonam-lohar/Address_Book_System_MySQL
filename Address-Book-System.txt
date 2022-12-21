@@ -67,3 +67,23 @@ mysql> desc AddressBook;
 | email       | varchar(100) | NO   |     | NULL    |       |
 +-------------+--------------+------+-----+---------+-------+
 8 rows in set (0.01 sec)
+
+
+
+UC3: To insert new contacts to Address Book..
+
+
+mysql> insert into AddressBook(firstname,lastname,address,city,state,zip,phonenumber,email)values('Poonam','Lohar','sambhajichowk','Shirol','maharashtra',416103,7058835985,'lohar98@gmail.com');
+Query OK, 1 row affected (0.02 sec)
+
+mysql> insert into AddressBook(firstname,lastname,address,city,state,zip,phonenumber,email)values('Reema','Desai','shivkrupa','Sangli','maharashtra',416311,7709262366,'desai98@gmail.com');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from AddressBook;
++-----------+----------+---------------+--------+-------------+--------+-------------+-------------------+
+| firstname | lastname | address       | city   | state       | zip    | phonenumber | email             |
++-----------+----------+---------------+--------+-------------+--------+-------------+-------------------+
+| Poonam    | Lohar    | sambhajichowk | Shirol | maharashtra | 416103 |  7058835985 | lohar98@gmail.com |
+| Reema     | Desai    | shivkrupa     | Sangli | maharashtra | 416311 |  7709262366 | desai98@gmail.com |
++-----------+----------+---------------+--------+-------------+--------+-------------+-------------------+
+2 rows in set (0.00 sec)
