@@ -156,3 +156,42 @@ mysql> select * from AddressBook where city='sangli' or state='maharashtra';
 | Reema     | Desai    | shivkrupa     | Sangli   | maharashtra | 416311 |  7709262366 | desai98@gmail.com |
 +-----------+----------+---------------+----------+-------------+--------+-------------+-------------------+
 2 rows in set (0.00 sec)
+
+
+UC7: To understand the size of address book by city and state..
+
+
+mysql> select * from AddressBook where city='sangli' or state='maharashtra';
++-----------+----------+---------------+----------+-------------+--------+-------------+-------------------+
+| firstname | lastname | address       | city     | state       | zip    | phonenumber | email             |
++-----------+----------+---------------+----------+-------------+--------+-------------+-------------------+
+| Poonam    | Lohar    | sambhajichowk | Kolhapur | maharashtra | 416103 |  7058835985 | lohar98@gmail.com |
+| Reema     | Desai    | shivkrupa     | Sangli   | maharashtra | 416311 |  7709262366 | desai98@gmail.com |
++-----------+----------+---------------+----------+-------------+--------+-------------+-------------------+
+2 rows in set (0.00 sec)
+
+mysql> select count(firstname) from AddressBook where city='Kolhapur';
++------------------+
+| count(firstname) |
++------------------+
+|                1 |
++------------------+
+1 row in set (0.01 sec)
+
+mysql> select count(firstname) from AddressBook where state state='maharashtra';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'state='maharashtra'' at line 1
+mysql> select count(city) from AddressBook where city='Kolhapur';
++-------------+
+| count(city) |
++-------------+
+|           1 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select count(state) from AddressBook where state='maharashtra';
++--------------+
+| count(state) |
++--------------+
+|            2 |
++--------------+
+1 row in set (0.00 sec)
