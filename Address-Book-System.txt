@@ -268,3 +268,14 @@ mysql> select * from AddressBook where contacttype='Friend';
 | Srushti   | Mane     | Wadi    | shirol | maharashtra | 416103 |  9689509560 | srushti@gmail.com | FriendshipWorld | Friend      |
 +-----------+----------+---------+--------+-------------+--------+-------------+-------------------+-----------------+-------------+
 1 row in set (0.00 sec)
+
+
+UC10: To get number of contact persons i.e.count by type
+
+mysql> select count(firstname) from AddressBook where contacttype='Friend';
++------------------+
+| count(firstname) |
++------------------+
+|                1 |
++------------------+
+1 row in set (0.00 sec)
