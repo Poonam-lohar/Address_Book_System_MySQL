@@ -279,3 +279,59 @@ mysql> select count(firstname) from AddressBook where contacttype='Friend';
 |                1 |
 +------------------+
 1 row in set (0.00 sec)
+
+
+UC11: To add person to both Friend and Family...
+
+
+mysql> use addressbooksystem;
+Database changed
+mysql> select * from AddressBook;
++-----------+----------+---------------+----------+-------------+--------+-------------+-------------------+-----------------+-------------+
+| firstname | lastname | address       | city     | state       | zip    | phonenumber | email             | bookname        | contacttype |
++-----------+----------+---------------+----------+-------------+--------+-------------+-------------------+-----------------+-------------+
+| Poonam    | Lohar    | sambhajichowk | Kolhapur | maharashtra | 416103 |  7058835985 | lohar98@gmail.com |                 |             |
+| Reema     | Desai    | shivkrupa     | Sangli   | maharashtra | 416311 |  7709262366 | desai98@gmail.com |                 |             |
+| Srushti   | Mane     | Wadi          | shirol   | maharashtra | 416103 |  9689509560 | srushti@gmail.com | FriendshipWorld | Friend      |
++-----------+----------+---------------+----------+-------------+--------+-------------+-------------------+-----------------+-------------+
+3 rows in set (0.00 sec)
+
+mysql> update Addressbook set bookname='Worldfamily' where firstname='Poonam';
+Query OK, 1 row affected (0.02 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update Addressbook set bookname='Worldfamily' where firstname='Reema';
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from AddressBook;
++-----------+----------+---------------+----------+-------------+--------+-------------+-------------------+-----------------+-------------+
+| firstname | lastname | address       | city     | state       | zip    | phonenumber | email             | bookname        | contacttype |
++-----------+----------+---------------+----------+-------------+--------+-------------+-------------------+-----------------+-------------+
+| Poonam    | Lohar    | sambhajichowk | Kolhapur | maharashtra | 416103 |  7058835985 | lohar98@gmail.com | Worldfamily     |             |
+| Reema     | Desai    | shivkrupa     | Sangli   | maharashtra | 416311 |  7709262366 | desai98@gmail.com | Worldfamily     |             |
+| Srushti   | Mane     | Wadi          | shirol   | maharashtra | 416103 |  9689509560 | srushti@gmail.com | FriendshipWorld | Friend      |
++-----------+----------+---------------+----------+-------------+--------+-------------+-------------------+-----------------+-------------+
+3 rows in set (0.00 sec)
+
+mysql> update AddressBook set bookname='FriendshipWorld',contacttype='Friend' where firstname='Srushti';
+Query OK, 0 rows affected (0.00 sec)
+Rows matched: 1  Changed: 0  Warnings: 0
+
+mysql> update AddressBook set contacttype='Family' where firstname='Poonam';
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update AddressBook set contacttype='Family' where firstname='Reema';
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from AddressBook;
++-----------+----------+---------------+----------+-------------+--------+-------------+-------------------+-----------------+-------------+
+| firstname | lastname | address       | city     | state       | zip    | phonenumber | email             | bookname        | contacttype |
++-----------+----------+---------------+----------+-------------+--------+-------------+-------------------+-----------------+-------------+
+| Poonam    | Lohar    | sambhajichowk | Kolhapur | maharashtra | 416103 |  7058835985 | lohar98@gmail.com | Worldfamily     | Family      |
+| Reema     | Desai    | shivkrupa     | Sangli   | maharashtra | 416311 |  7709262366 | desai98@gmail.com | Worldfamily     | Family      |
+| Srushti   | Mane     | Wadi          | shirol   | maharashtra | 416103 |  9689509560 | srushti@gmail.com | FriendshipWorld | Friend      |
++-----------+----------+---------------+----------+-------------+--------+-------------+-------------------+-----------------+-------------+
+3 rows in set (0.00 sec)
