@@ -207,3 +207,64 @@ mysql> select firstname,city from AddressBook order by city;
 | Reema     | Sangli   |
 +-----------+----------+
 2 rows in set (0.00 sec)
+
+
+UC9: Identify Address bokk with name and type..
+
+mysql>  insert into AddressBook(firstname,lastname,address,city,state,zip,phonenumber,email)values('Srushti','Mane','Wadi','shirol','maharashtra',416103,9689509560,'srushti@gmail.com');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from AddressBook;
++-----------+----------+---------------+----------+-------------+--------+-------------+-------------------+
+| firstname | lastname | address       | city     | state       | zip    | phonenumber | email             |
++-----------+----------+---------------+----------+-------------+--------+-------------+-------------------+
+| Poonam    | Lohar    | sambhajichowk | Kolhapur | maharashtra | 416103 |  7058835985 | lohar98@gmail.com |
+| Reema     | Desai    | shivkrupa     | Sangli   | maharashtra | 416311 |  7709262366 | desai98@gmail.com |
+| Srushti   | Mane     | Wadi          | shirol   | maharashtra | 416103 |  9689509560 | srushti@gmail.com |
++-----------+----------+---------------+----------+-------------+--------+-------------+-------------------+
+3 rows in set (0.00 sec)
+
+mysql> alter table AddressBook and bookname varchar(50) not null,add contacttype varchar(50) not null;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'and bookname varchar(50) not null,add contacttype varchar(50) not null' at line 1
+mysql> alter table Addressbook add bookname varchar(50) not null,add contacttype varchar(50) not null;
+Query OK, 0 rows affected (0.05 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc AddressBook;
++-------------+--------------+------+-----+---------+-------+
+| Field       | Type         | Null | Key | Default | Extra |
++-------------+--------------+------+-----+---------+-------+
+| firstname   | varchar(10)  | NO   |     | NULL    |       |
+| lastname    | varchar(20)  | NO   |     | NULL    |       |
+| address     | varchar(100) | NO   |     | NULL    |       |
+| city        | varchar(100) | NO   |     | NULL    |       |
+| state       | varchar(50)  | NO   |     | NULL    |       |
+| zip         | int          | NO   |     | NULL    |       |
+| phonenumber | double       | NO   |     | NULL    |       |
+| email       | varchar(100) | NO   |     | NULL    |       |
+| bookname    | varchar(50)  | NO   |     | NULL    |       |
+| contacttype | varchar(50)  | NO   |     | NULL    |       |
++-------------+--------------+------+-----+---------+-------+
+10 rows in set (0.01 sec)
+
+mysql> update AddressBook set bookname='FriendshipWorld',contacttype='Friend' where firstname='Srushti';
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from AddressBook;
++-----------+----------+---------------+----------+-------------+--------+-------------+-------------------+-----------------+-------------+
+| firstname | lastname | address       | city     | state       | zip    | phonenumber | email             | bookname        | contacttype |
++-----------+----------+---------------+----------+-------------+--------+-------------+-------------------+-----------------+-------------+
+| Poonam    | Lohar    | sambhajichowk | Kolhapur | maharashtra | 416103 |  7058835985 | lohar98@gmail.com |                 |             |
+| Reema     | Desai    | shivkrupa     | Sangli   | maharashtra | 416311 |  7709262366 | desai98@gmail.com |                 |             |
+| Srushti   | Mane     | Wadi          | shirol   | maharashtra | 416103 |  9689509560 | srushti@gmail.com | FriendshipWorld | Friend      |
++-----------+----------+---------------+----------+-------------+--------+-------------+-------------------+-----------------+-------------+
+3 rows in set (0.00 sec)
+
+mysql> select * from AddressBook where contacttype='Friend';
++-----------+----------+---------+--------+-------------+--------+-------------+-------------------+-----------------+-------------+
+| firstname | lastname | address | city   | state       | zip    | phonenumber | email             | bookname        | contacttype |
++-----------+----------+---------+--------+-------------+--------+-------------+-------------------+-----------------+-------------+
+| Srushti   | Mane     | Wadi    | shirol | maharashtra | 416103 |  9689509560 | srushti@gmail.com | FriendshipWorld | Friend      |
++-----------+----------+---------+--------+-------------+--------+-------------+-------------------+-----------------+-------------+
+1 row in set (0.00 sec)
