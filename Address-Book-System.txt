@@ -335,3 +335,104 @@ mysql> select * from AddressBook;
 | Srushti   | Mane     | Wadi          | shirol   | maharashtra | 416103 |  9689509560 | srushti@gmail.com | FriendshipWorld | Friend      |
 +-----------+----------+---------------+----------+-------------+--------+-------------+-------------------+-----------------+-------------+
 3 rows in set (0.00 sec)
+
+UC12: ER diagram
+
+
+mysql> create table Address_Book_contact(
+    -> lastname varchar(20) not null;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 2
+mysql> create table Address_Book_contact(
+    -> lastname varchar(20) not null,
+    -> firstname varchar(20) not null,
+    -> address varchar(150),
+    -> phonenumber bigint not null,
+    -> email varchar(50),
+    -> primary key(firstname));
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> desc AddressBook;
++-------------+--------------+------+-----+---------+-------+
+| Field       | Type         | Null | Key | Default | Extra |
++-------------+--------------+------+-----+---------+-------+
+| firstname   | varchar(10)  | NO   |     | NULL    |       |
+| lastname    | varchar(20)  | NO   |     | NULL    |       |
+| address     | varchar(100) | NO   |     | NULL    |       |
+| city        | varchar(100) | NO   |     | NULL    |       |
+| state       | varchar(50)  | NO   |     | NULL    |       |
+| zip         | int          | NO   |     | NULL    |       |
+| phonenumber | double       | NO   |     | NULL    |       |
+| email       | varchar(100) | NO   |     | NULL    |       |
+| bookname    | varchar(50)  | NO   |     | NULL    |       |
+| contacttype | varchar(50)  | NO   |     | NULL    |       |
++-------------+--------------+------+-----+---------+-------+
+10 rows in set (0.01 sec)
+
+mysql> use addressbooksystem;
+Database changed
+mysql> select * from AddressBook;
++-----------+----------+---------------+----------+-------------+--------+-------------+-------------------+-----------------+-------------+
+| firstname | lastname | address       | city     | state       | zip    | phonenumber | email             | bookname        | contacttype |
++-----------+----------+---------------+----------+-------------+--------+-------------+-------------------+-----------------+-------------+
+| Poonam    | Lohar    | sambhajichowk | Kolhapur | maharashtra | 416103 |  7058835985 | lohar98@gmail.com | Worldfamily     | Family      |
+| Reema     | Desai    | shivkrupa     | Sangli   | maharashtra | 416311 |  7709262366 | desai98@gmail.com | Worldfamily     | Family      |
+| Srushti   | Mane     | Wadi          | shirol   | maharashtra | 416103 |  9689509560 | srushti@gmail.com | FriendshipWorld | Friend      |
++-----------+----------+---------------+----------+-------------+--------+-------------+-------------------+-----------------+-------------+
+3 rows in set (0.01 sec)
+
+mysql> create table address(
+    -> zip int(10) not null,
+    -> city varchar(50) not null,
+    -> state varchar(100) not null,
+    -> primary key(zip));
+Query OK, 0 rows affected, 1 warning (0.06 sec)
+
+mysql> desc address;
++-------+--------------+------+-----+---------+-------+
+| Field | Type         | Null | Key | Default | Extra |
++-------+--------------+------+-----+---------+-------+
+| zip   | int          | NO   | PRI | NULL    |       |
+| city  | varchar(50)  | NO   |     | NULL    |       |
+| state | varchar(100) | NO   |     | NULL    |       |
++-------+--------------+------+-----+---------+-------+
+3 rows in set (0.01 sec)
+
+
+UC13: All Retrieve queries uc6,uc7,uc8,uc10..
+
+mysql> select * from AddressBook Where city='sangli';
++-----------+----------+-----------+--------+-------------+--------+-------------+-------------------+-------------+-------------+
+| firstname | lastname | address   | city   | state       | zip    | phonenumber | email             | bookname    | contacttype |
++-----------+----------+-----------+--------+-------------+--------+-------------+-------------------+-------------+-------------+
+| Reema     | Desai    | shivkrupa | Sangli | maharashtra | 416311 |  7709262366 | desai98@gmail.com | Worldfamily | Family      |
++-----------+----------+-----------+--------+-------------+--------+-------------+-------------------+-------------+-------------+
+1 row in set (0.00 sec)
+
+mysql> select count(city) from AddressBook;
++-------------+
+| count(city) |
++-------------+
+|           3 |
++-------------+
+1 row in set (0.03 sec)
+
+mysql> select * from AddressBook order by first name;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'name' at line 1
+mysql> select * from AddressBook order by firstname;
++-----------+----------+---------------+----------+-------------+--------+-------------+-------------------+-----------------+-------------+
+| firstname | lastname | address       | city     | state       | zip    | phonenumber | email             | bookname        | contacttype |
++-----------+----------+---------------+----------+-------------+--------+-------------+-------------------+-----------------+-------------+
+| Poonam    | Lohar    | sambhajichowk | Kolhapur | maharashtra | 416103 |  7058835985 | lohar98@gmail.com | Worldfamily     | Family      |
+| Reema     | Desai    | shivkrupa     | Sangli   | maharashtra | 416311 |  7709262366 | desai98@gmail.com | Worldfamily     | Family      |
+| Srushti   | Mane     | Wadi          | shirol   | maharashtra | 416103 |  9689509560 | srushti@gmail.com | FriendshipWorld | Friend      |
++-----------+----------+---------------+----------+-------------+--------+-------------+-------------------+-----------------+-------------+
+3 rows in set (0.00 sec)
+
+mysql> select contacttype,count(firstname) from AddressBook group by contacttype;
++-------------+------------------+
+| contacttype | count(firstname) |
++-------------+------------------+
+| Family      |                2 |
+| Friend      |                1 |
++-------------+------------------+
+2 rows in set (0.00 sec)
